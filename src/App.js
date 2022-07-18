@@ -23,7 +23,7 @@ function App() {
   const [new_timestamp, setNew_timestamp] = useState();
 
   const createData = async () => {
-    await addDoc(waterCollectionRef, { do: Number(7), tds: Number(240), turbidity: Number(3), ph: Number(7), temp: Number(28), timestamp: String(new_timestamp) });
+    await addDoc(waterCollectionRef, { do: Number(7.1), tds: Number(140), turbidity: Number(1.5), ph: Number(7.05), temp: Number(26), wqi: Number(48.67), timestamp: String(new_timestamp) });
   };
 
   const deleteData = async (id) => {
@@ -48,22 +48,27 @@ function App() {
       </div>
 
       <button onClick={createData}> Insert Data </button>
+      <br></br>
 
       {waterData.map((data) => {
         return(
           <>
           <table>
+            <th>No</th>
             <th>DO</th>
             <th>TDS</th>
             <th>Turbidity</th>
             <th>pH</th>
             <th>Temp</th>
+            <th>WQI</th>
             <tr>
+              <td>{data.id}</td>
               <td>{data.do}</td>
               <td>{data.tds}</td>
               <td>{data.turbidity}</td>
               <td>{data.ph}</td>
               <td>{data.temp}</td>
+              <td>{data.wqi}</td>
               <button
               onClick={() => {
                 deleteData(data.id);
